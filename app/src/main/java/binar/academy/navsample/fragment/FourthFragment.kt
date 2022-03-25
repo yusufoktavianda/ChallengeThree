@@ -26,9 +26,32 @@ class FourthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentFourthBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
+
+
         binding.fourthButton.setOnClickListener {
 //            findNavController().popBackStack()
-            sendDetailPerson()
+            val age = binding.ageEdittext.text.toString().trim()
+            val address = binding.addressEdittext.text.toString().trim()
+            val job= binding.jobEdittext.text.toString().trim()
+            if((age=="")||(address=="")||(job=="")){
+                if((age=="")){
+                    binding.ageEdittext.setText("0")
+                    sendDetailPerson()
+                }else if ((address=="")){
+                    binding.addressEdittext.setText("")
+                    sendDetailPerson()
+                }else if((job=="")){
+                    binding.jobEdittext.setText("")
+                    sendDetailPerson()
+                }else if ((age=="")&&(address=="")&&(job=="")) {
+                    binding.ageEdittext.setText("0")
+                    binding.addressEdittext.setText("")
+                    binding.jobEdittext.setText("")
+                    sendDetailPerson()
+                }
+            }else if((age!="")&&(address!="")&&(job!="")){
+                sendDetailPerson()
+            }
         }
     }
     private fun sendDetailPerson(){

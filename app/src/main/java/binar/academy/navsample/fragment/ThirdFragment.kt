@@ -36,16 +36,14 @@ class ThirdFragment : Fragment() {
         val address = arguments.profileperson.address
         val job = arguments.profileperson.job
         val person = arguments.profileperson.toString()
-
+        Log.d("thirdperson",person)
         Log.d("Third",name)
 //        Log.d("Third", person.toString())
 //        Log.d("Third", personName)
-        if ((address != "")) {
+        if ((age!=0)||(address != "")||(job != "")) {
             showPerson()
         } else if ((name != "")) {
             showName()
-        }else{
-            showPerson()
         }
 //        showPerson()
 //        showName()
@@ -63,10 +61,14 @@ class ThirdFragment : Fragment() {
         binding.viewDetailThird.detailThirdLayout.visibility = View.VISIBLE
         binding.viewDetailThird.nameDetailprofileTextview.text = arguments.profileperson.name
         val myage =arguments.profileperson.age
-        if (myage % 2 == 0) {
-            age = "$myage, bernilai Genap"
-        } else if (myage % 2 != 0) {
-            age = "$myage, bernilai Ganjil"
+        if(myage!=0){
+            if (myage % 2 == 0) {
+                age = "$myage, bernilai Genap"
+            } else if (myage % 2 != 0) {
+                age = "$myage, bernilai Ganjil"
+            }
+        } else if (myage==0){
+            age=""
         }
         binding.viewDetailThird.ageDetailprofileTextview.text =age
         binding.viewDetailThird.addressDetailprofileTextview.text =arguments.profileperson.address
